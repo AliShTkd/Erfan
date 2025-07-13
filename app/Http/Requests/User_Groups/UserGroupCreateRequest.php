@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\User_Groups;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRegisterRequest extends FormRequest
+class UserGroupCreateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -21,17 +17,7 @@ class UserRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required',
-            'password' => 'required',
-        ];
-    }
-    public function messages()
-    {
-        return [
-            ""
+            'name' => 'required|string|max:255|unique:user_groups',
         ];
     }
 
@@ -39,4 +25,5 @@ class UserRegisterRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json($validator->errors(),422));
     }
+
 }

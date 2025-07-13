@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources\User_Groups;
+namespace App\Http\Resources\Users;
 
-use App\Http\Resources\Users\UserRelResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,7 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $profile
  * @property mixed $config
  */
-class UserGroupIndexResource extends JsonResource
+class UserIndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -25,8 +24,6 @@ class UserGroupIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'created_by' => new UserRelResource($this->created_user),
-            'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

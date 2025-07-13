@@ -15,6 +15,7 @@ class AuthRepository implements AuthInterface
             'email' => $request->email,
             'password' => \Hash::make($request->password),
             'group_id' => $request->group_id,
+            'phone' => $request->phone,
         ]);
 //        $user->update(['code' => helper_core_code_generator($user->id)]);
         $token = auth('api')->login($user);

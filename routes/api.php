@@ -20,3 +20,13 @@ Route::prefix('auth')->group(function (){
 //    Route::post('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
 
 });
+
+Route::middleware('auth:api')->group(function (){
+
+    Route::prefix('users')->group(function (){
+
+        Route::apiResource('groups',\App\Http\Controllers\User_Groups\UserGroupController::class);
+
+    });
+
+});
