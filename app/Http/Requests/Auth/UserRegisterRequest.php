@@ -26,6 +26,7 @@ class UserRegisterRequest extends FormRequest
             'email' => 'required|email|unique:users',
             'phone' => 'required',
             'password' => 'required',
+            'group_id' => 'nullable',
         ];
     }
     public function messages()

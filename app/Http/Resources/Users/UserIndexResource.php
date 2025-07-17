@@ -23,7 +23,14 @@ class UserIndexResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'group_id' => $this->group_id,
             'name' => $this->name,
+            'email ' => $this->email,
+            'phone' => $this->phone,
+            'username ' => $this->username,
+            'address ' => $this->address,
+            'created_by' => new UserRelResource($this->created_user),
+            'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

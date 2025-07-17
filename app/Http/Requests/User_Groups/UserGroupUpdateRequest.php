@@ -21,7 +21,7 @@ class UserGroupUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:user_groups'.$this->group->id,
+            'name' => 'required|string|max:255|unique:user_groups,name,'.$this->group->id,
         ];
     }
     public function messages()

@@ -21,9 +21,10 @@ Route::prefix('auth')->group(function (){
 
 });
 
-Route::middleware('auth:api')->group(function (){
 
-    Route::prefix('users')->group(function (){
+Route::group(['middleware' => "auth:api"], function () {
+
+    Route::prefix('users')->as('users.')->group(function (){
 
         Route::apiResource('groups',\App\Http\Controllers\User_Groups\UserGroupController::class);
 
