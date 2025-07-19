@@ -29,5 +29,6 @@ Route::group(['middleware' => "auth:api"], function () {
         Route::apiResource('groups',\App\Http\Controllers\User_Groups\UserGroupController::class);
 
     });
+    Route::apiResource('users',\App\Http\Controllers\Users\UserController::class);
 
 });

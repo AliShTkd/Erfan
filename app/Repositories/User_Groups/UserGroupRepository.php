@@ -27,13 +27,7 @@ class UserGroupRepository implements UserGroupInterface
             'name' => $request->name,
         ]);
         //create attributes
-        if (is_array($request->items)){
-            foreach ($request->items as $item){
-                $data->attributes()->create([
-                    'attribute' => $item
-                ]);
-            }
-        }
+
 
         return helper_response_created(new UserGroupIndexResource($data));
 
@@ -49,14 +43,7 @@ class UserGroupRepository implements UserGroupInterface
         $item->update([
             'name' => $request->name,
         ]);
-        $item->attributes()->delete();
-        if (is_array($request->items)){
-            foreach ($request->items as $attribute){
-                $item->attributes()->create([
-                    'attribute' => $attribute
-                ]);
-            }
-        }
+
         return helper_response_updated($item);
 
     }

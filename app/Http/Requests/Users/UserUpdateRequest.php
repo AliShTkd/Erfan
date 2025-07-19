@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\User_Groups;
+namespace App\Http\Requests\Users;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserGroupUpdateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,12 @@ class UserGroupUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:user_groups,name,'.$this->group->id,
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$this->user->id,
+            'phone' => 'required|unique:users,phone,'.$this->user->id,
+            'password' => 'required',
+            'group_id' => 'required',
+            'address' => 'nullable',
         ];
     }
 

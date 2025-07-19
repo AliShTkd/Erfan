@@ -33,14 +33,6 @@ class UserRepository implements UserInterface
             'description' => $request->description,
             'password' => \Hash::make($request->password),
         ]);
-        //create attributes
-        if (is_array($request->items)){
-            foreach ($request->items as $item){
-                $data->attributes()->create([
-                    'attribute' => $item
-                ]);
-            }
-        }
 
         return helper_response_created(new UserIndexResource($data));
 
@@ -54,6 +46,8 @@ class UserRepository implements UserInterface
     public function update($request,$item): \Illuminate\Http\JsonResponse
     {
         $item->update([
+            'group_id' => $request->group_id,
+            'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'username' => $request->username,
@@ -61,14 +55,6 @@ class UserRepository implements UserInterface
             'description' => $request->description,
             'password' => \Hash::make($request->password),
         ]);
-        $item->attributes()->delete();
-        if (is_array($request->items)){
-            foreach ($request->items as $attribute){
-                $item->attributes()->create([
-                    'attribute' => $attribute
-                ]);
-            }
-        }
         return helper_response_updated($item);
 
     }

@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Requests\User_Groups;
+namespace App\Http\Requests\Users;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserGroupUpdateRequest extends FormRequest
+class UserCreateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -21,13 +17,18 @@ class UserGroupUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:user_groups,name,'.$this->group->id,
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|unique:users',
+            'password' => 'required',
+            'group_id' => 'required',
+            'address' => 'nullable',
         ];
     }
-
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json($validator->errors(),422));
     }
+
 }

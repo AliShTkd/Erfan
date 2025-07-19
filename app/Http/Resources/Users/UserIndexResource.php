@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Users;
 
+use App\Http\Resources\User_Groups\UserGroupShortResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,6 +30,7 @@ class UserIndexResource extends JsonResource
             'phone' => $this->phone,
             'username ' => $this->username,
             'address ' => $this->address,
+            'group' => new UserGroupShortResource($this->group_user),
             'created_by' => new UserRelResource($this->created_user),
             'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,
