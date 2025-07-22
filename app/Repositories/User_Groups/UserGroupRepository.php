@@ -3,6 +3,7 @@ namespace App\Repositories\User_Groups;
 
 use App\Http\Resources\Auth\UserInfoAuthResource;
 use App\Http\Resources\User_Groups\UserGroupIndexResource;
+use App\Http\Resources\User_Groups\UserGroupShortResource;
 use App\Interfaces\User_Groups\UserGroupInterface;
 use App\Models\User;
 use App\Models\User_Group;
@@ -20,7 +21,12 @@ class UserGroupRepository implements UserGroupInterface
     }
 
 
-
+    public function all(): \Illuminate\Http\JsonResponse
+    {
+        $data = User_Group::query();
+        $data->orderByDesc('id');
+        return helper_response_fetch(UserGroupShortResource::collection($data->get()));
+    }
     public function store($request): \Illuminate\Http\JsonResponse
     {
         $data = User_Group::create([

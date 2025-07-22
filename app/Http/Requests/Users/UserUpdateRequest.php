@@ -24,7 +24,7 @@ class UserUpdateRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$this->user->id,
             'phone' => 'required|unique:users,phone,'.$this->user->id,
-            'password' => 'required',
+            'password' => 'nullable',
             'group_id' => 'required',
             'address' => 'nullable',
         ];

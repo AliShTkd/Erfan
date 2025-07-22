@@ -26,9 +26,18 @@ Route::group(['middleware' => "auth:api"], function () {
 
     Route::prefix('users')->as('users.')->group(function (){
 
+        Route::prefix('groups')->as('groups.')->group(function (){
+            Route::get('all',[\App\Http\Controllers\User_Groups\UserGroupController::class,'all'])->name('all');
+        });
         Route::apiResource('groups',\App\Http\Controllers\User_Groups\UserGroupController::class);
 
+
+        Route::get('all',[\App\Http\Controllers\Users\UserController::class,'all'])->name('all');
     });
     Route::apiResource('users',\App\Http\Controllers\Users\UserController::class);
 
+    Route::prefix('products')->as('products.')->group(function (){
+        Route::get('all',[\App\Http\Controllers\Products\ProductController::class,'all'])->name('all');
+    });
+    Route::apiResource('products',\App\Http\Controllers\Products\ProductController::class);
 });

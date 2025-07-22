@@ -1,9 +1,8 @@
 <?php
 namespace App\Repositories\Users;
 
-use App\Http\Resources\Auth\UserInfoAuthResource;
 use App\Http\Resources\Users\UserIndexResource;
-use App\Interfaces\User_Groups\UserGroupInterface;
+use App\Http\Resources\Users\UserShortResource;
 use App\Interfaces\Users\UserInterface;
 use App\Models\User;
 
@@ -19,6 +18,12 @@ class UserRepository implements UserInterface
 
     }
 
+    public function all(): \Illuminate\Http\JsonResponse
+    {
+        $data = User::query();
+        $data->orderByDesc('id');
+        return helper_response_fetch(UserShortResource::collection($data->get()));
+    }
 
 
     public function store($request): \Illuminate\Http\JsonResponse

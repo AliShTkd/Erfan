@@ -1,7 +1,7 @@
 <?php
-namespace App\Interfaces\Users;
+namespace App\Interfaces\Products;
 
-interface UserInterface
+interface ProductInterface
 {
 
     public function index();

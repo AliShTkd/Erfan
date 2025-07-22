@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Products;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserCreateRequest extends FormRequest
+class ProductCreateRequest extends FormRequest
 {
 
     /**
@@ -17,12 +17,11 @@ class UserCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required|unique:users',
-            'password' => 'required',
-            'group_id' => 'required|exists:user_groups,id',
-            'address' => 'nullable',
+            'user_id' => 'nullable|exists:users,id',
+            'name' => 'required|unique:products,name',
+            'entity' => 'required|numeric',
+            'price' => 'required|numeric',
+            'image' => 'nullable',
         ];
     }
 

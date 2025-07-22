@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Users;
+namespace App\Http\Resources\Products;
 
 use App\Http\Resources\User_Groups\UserGroupShortResource;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $profile
  * @property mixed $config
  */
-class UserIndexResource extends JsonResource
+class ProductIndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,13 +24,12 @@ class UserIndexResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'group_id' => $this->group_id,
+            'user_id' => $this->user_id,
             'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'username ' => $this->username,
-            'address ' => $this->address,
-            'group' => new UserGroupShortResource($this->group_user),
+            'entity' => $this->entity,
+            'price' => $this->price,
+            'image' => $this->image,
+            'description' => $this->description,
             'created_by' => new UserRelResource($this->created_user),
             'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,

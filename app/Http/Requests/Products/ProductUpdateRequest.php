@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Products;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserCreateRequest extends FormRequest
+class ProductUpdateRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -17,18 +21,17 @@ class UserCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required|unique:users',
-            'password' => 'required',
-            'group_id' => 'required|exists:user_groups,id',
-            'address' => 'nullable',
+            'user_id' => 'nullable|exists:users,id',
+            'name' => 'required|unique:products,name'.$this->product->id,
+            'entity' => 'required|numeric',
+            'price' => 'required|numeric',
+            'image' => 'nullable',
         ];
     }
+
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json($validator->errors(),422));
     }
-
 }
