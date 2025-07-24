@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -85,5 +86,47 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(user_group::class, 'group_id');
     }
 
+    public function Carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    public static function searchable()
+    {
+        $group =User_Group::select(['id as value','name as label'])->get();
+
+        $fields = [
+
+            [
+                'label' => 'نام و نام خانوادگی کاربر',
+                'field' => 'name',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'ایمیل کاربر',
+                'field' => 'email',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'شماره موبایل کاربر',
+                'field' => 'phone',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'نام کاربری',
+                'field' => 'username',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'نقش کاربر',
+                'field' => 'group_id',
+                'type' => 'select',
+                'items' => $group,
+            ],
+
+        ];
+        return $fields;
+
+    }
 
 }

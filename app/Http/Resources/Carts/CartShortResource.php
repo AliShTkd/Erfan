@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $profile
  * @property mixed $config
  */
-class ProductShortResource extends JsonResource
+class CartShortResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,7 +23,10 @@ class ProductShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'user_id' => $this->user_id,
+            'product_id' => $this->product_id,
+            'quantity' => $this->quantity,
+            'total_price' => $this->total_price,
         ];
     }
 }

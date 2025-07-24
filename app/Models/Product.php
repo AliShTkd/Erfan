@@ -37,4 +37,40 @@ class Product extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public static function searchable()
+    {
+        $user =User::select(['id as value','name as label','email as email'])->get();
+
+        $fields = [
+
+            [
+                'label' => 'عنوان محصول',
+                'field' => 'name',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'موجودی',
+                'field' => 'entity',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'قیمت محصولات',
+                'field' => 'price',
+                'type' => 'text'
+            ],
+            [
+                'label' => 'شناسه کاربر',
+                'field' => 'user_id',
+                'type' => 'select',
+                'items' => $user,
+            ],
+
+        ];
+        return $fields;
+
+    }
+
+
+
 }

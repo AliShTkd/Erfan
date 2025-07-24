@@ -70,4 +70,9 @@ class UserRepository implements UserInterface
         return helper_response_deleted();
     }
 
+    public function searchable()
+    {
+        return helper_response_fetch(User::searchable());
+    }
+
 }

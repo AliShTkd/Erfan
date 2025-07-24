@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cart extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table='products';
+    protected $table='cart';
     protected $guarded=[];
     protected static function booted(): void
     {
@@ -42,5 +42,30 @@ class Cart extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class,'product_id');
+    }
+
+    public static function searchable()
+    {
+        $user =User::select(['id as value','name as label','email as email'])->get();
+        $product =Product::select(['id as value','name as label'])->get();
+
+        $fields = [
+
+            [
+                'label' => 'شناسه کاربر',
+                'field' => 'user_id',
+                'type' => 'select',
+                'items' => $user,
+            ],
+            [
+                'label' => 'شناسه محصولات',
+                'field' => 'product_id',
+                'type' => 'select',
+                'items' => $product,
+            ],
+
+        ];
+        return $fields;
+
     }
 }

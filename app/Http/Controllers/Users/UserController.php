@@ -61,4 +61,9 @@ class UserController extends Controller
     {
         return $this->repository->destroy($user);
     }
+
+    public function searchable()
+    {
+        return $this->repository->searchable();
+    }
 }

@@ -63,4 +63,9 @@ class UserGroupController extends Controller
     {
         return $this->repository->destroy($group);
     }
+
+    public function searchable()
+    {
+        return $this->repository->searchable();
+    }
 }

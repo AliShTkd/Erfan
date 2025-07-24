@@ -28,16 +28,25 @@ Route::group(['middleware' => "auth:api"], function () {
 
         Route::prefix('groups')->as('groups.')->group(function (){
             Route::get('all',[\App\Http\Controllers\User_Groups\UserGroupController::class,'all'])->name('all');
+            Route::get('searchable',[\App\Http\Controllers\User_Groups\UserGroupController::class,'searchable'])->name('searchable');
         });
         Route::apiResource('groups',\App\Http\Controllers\User_Groups\UserGroupController::class);
 
 
         Route::get('all',[\App\Http\Controllers\Users\UserController::class,'all'])->name('all');
+        Route::get('searchable',[\App\Http\Controllers\Users\UserController::class,'searchable'])->name('searchable');
     });
     Route::apiResource('users',\App\Http\Controllers\Users\UserController::class);
 
     Route::prefix('products')->as('products.')->group(function (){
         Route::get('all',[\App\Http\Controllers\Products\ProductController::class,'all'])->name('all');
+        Route::get('searchable',[\App\Http\Controllers\Products\ProductController::class,'searchable'])->name('searchable');
     });
     Route::apiResource('products',\App\Http\Controllers\Products\ProductController::class);
+
+
+    Route::prefix('carts')->as('carts.')->group(function (){
+        Route::get('searchable',[\App\Http\Controllers\Carts\CartController::class,'searchable'])->name('searchable');
+    });
+    Route::apiResource('carts',\App\Http\Controllers\Carts\CartController::class);
 });

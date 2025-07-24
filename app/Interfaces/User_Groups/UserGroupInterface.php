@@ -15,7 +15,7 @@ interface UserGroupInterface
 
     public function destroy($item);
 
-
+    public function searchable();
 
 }
 

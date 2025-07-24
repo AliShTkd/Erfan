@@ -32,4 +32,19 @@ class User_Group extends Model
     {
         return $this->belongsTo(User::class,'updated_by');
     }
+
+    public static function searchable()
+    {
+
+        $fields = [
+
+            [
+                'label' => 'نام نقش کاربر',
+                'field' => 'name',
+                'type' => 'text'
+            ],
+        ];
+        return $fields;
+
+    }
 }

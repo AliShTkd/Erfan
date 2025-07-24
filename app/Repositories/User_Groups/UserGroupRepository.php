@@ -60,4 +60,9 @@ class UserGroupRepository implements UserGroupInterface
         return helper_response_deleted();
     }
 
+    public function searchable()
+    {
+        return helper_response_fetch(User_Group::searchable());
+    }
+
 }

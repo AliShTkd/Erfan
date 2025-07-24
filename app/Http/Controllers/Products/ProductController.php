@@ -63,4 +63,9 @@ class ProductController extends Controller
     {
         return $this->repository->destroy($product);
     }
+
+    public function searchable()
+    {
+        return $this->repository->searchable();
+    }
 }

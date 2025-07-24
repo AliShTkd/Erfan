@@ -16,7 +16,7 @@ interface UserInterface
 
     public function destroy($item);
 
-
+    public function searchable();
 
 }
 

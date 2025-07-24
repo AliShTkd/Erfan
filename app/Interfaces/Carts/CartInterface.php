@@ -1,7 +1,7 @@
 <?php
-namespace App\Interfaces\Products;
+namespace App\Interfaces\Carts;
 
-interface ProductInterface
+interface CartInterface
 {
 
     public function index();
