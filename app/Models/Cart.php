@@ -39,9 +39,9 @@ class Cart extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function products(): HasMany
+    public function product(): BelongsTo
     {
-        return $this->hasMany(Product::class,'product_id');
+        return $this->belongsTo(Product::class,'product_id');
     }
 
     public static function searchable()

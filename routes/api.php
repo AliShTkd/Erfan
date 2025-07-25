@@ -47,6 +47,9 @@ Route::group(['middleware' => "auth:api"], function () {
 
     Route::prefix('carts')->as('carts.')->group(function (){
         Route::get('searchable',[\App\Http\Controllers\Carts\CartController::class,'searchable'])->name('searchable');
+        Route::post('add',[\App\Http\Controllers\Carts\CartController::class,'add_to_cart'])->name('add_to_cart');
+        Route::get('get',[\App\Http\Controllers\Carts\CartController::class,'get_cart'])->name('get_cart');
+        Route::get('delete/{id}',[\App\Http\Controllers\Carts\CartController::class,'delete_cart'])->name('delete_cart');
     });
     Route::apiResource('carts',\App\Http\Controllers\Carts\CartController::class);
 });

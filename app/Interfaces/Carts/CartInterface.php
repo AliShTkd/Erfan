@@ -18,6 +18,10 @@ interface CartInterface
 
     public function searchable();
 
+    public function add_to_cart();
+
+    public function get_cart();
+
 
 }
 

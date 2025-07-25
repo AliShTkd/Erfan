@@ -30,7 +30,7 @@ class UserIndexResource extends JsonResource
             'phone' => $this->phone,
             'username ' => $this->username,
             'address ' => $this->address,
-            'group' => new UserGroupShortResource($this->group_user),
+            'group' => new UserGroupShortResource($this->user_group),
             'created_by' => new UserRelResource($this->created_user),
             'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,

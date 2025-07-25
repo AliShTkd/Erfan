@@ -70,4 +70,22 @@ class CartRepository implements CartInterface
         return helper_response_fetch(Cart::searchable());
     }
 
+    public function add_to_cart()
+    {
+       $data = auth('api')->user()->carts()->create([
+            'product_id' => request('product_id'),
+            'quantity' => request('quantity'),
+           'total_price' => request('total_price'),
+        ]);
+       return response_success();
+    }
+
+    public function get_cart()
+    {
+        $data = auth('api')->user()->carts();
+        $data->with('product');
+        return helper_response_fetch($data->get());
+    }
+
+
 }

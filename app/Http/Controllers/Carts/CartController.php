@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Carts;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Carts\AddToCartUpdateRequest;
 use App\Http\Requests\Carts\CartCreateRequest;
 use App\Http\Requests\Carts\CartUpdateRequest;
 use App\Interfaces\Carts\CartInterface;
@@ -66,4 +67,21 @@ class CartController extends Controller
     {
         return $this->repository->searchable();
     }
+
+    public function add_to_cart()
+    {
+        return $this->repository->add_to_cart();
+    }
+
+    public function get_cart()
+    {
+        return $this->repository->get_cart();
+    }
+
+    public function delete_cart(Cart $id)
+    {
+        $id->delete();
+        return helper_response_deleted();
+    }
+
 }
