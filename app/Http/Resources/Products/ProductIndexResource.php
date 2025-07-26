@@ -26,6 +26,7 @@ class ProductIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'user' => new UserRelResource($this->user),
             'name' => $this->name,
             'entity' => $this->entity,
             'price' => $this->price,

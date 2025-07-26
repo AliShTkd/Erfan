@@ -9,13 +9,43 @@ use App\Models\User;
 class UserRepository implements UserInterface
 {
 
+//    public function index(): \Illuminate\Http\JsonResponse
+//    {
+//        $data = User::query();
+//        $data->with(['created_user','updated_user']);
+//        $data->orderBy(request('sort_by'),request('sort_type'));
+//        return helper_response_fetch(UserIndexResource::collection($data->paginate(request('per_page')))->resource);
+//
+//    }
+
     public function index(): \Illuminate\Http\JsonResponse
     {
         $data = User::query();
-        $data->with(['created_user','updated_user']);
-        $data->orderBy(request('sort_by'),request('sort_type'));
-        return helper_response_fetch(UserIndexResource::collection($data->paginate(request('per_page')))->resource);
+        $data->with(['created_user', 'updated_user']);
 
+        // گرفتن فیلدهای قابل جستجو از مدل
+        $searchableFields = User::searchable();
+
+        // اعمال فیلترهای جستجو
+        foreach ($searchableFields as $field) {
+            $fieldName = $field['field'];
+            $fieldType = $field['type'];
+
+            // بررسی وجود پارامتر جستجو برای این فیلد
+            if ($value = request($fieldName)) {
+                if ($fieldType === 'text') {
+                    $data->where($fieldName, 'like', '%' . $value . '%');
+                } elseif ($fieldType === 'select') {
+                    $data->where($fieldName, $value);
+                }
+            }
+        }
+
+        // اعمال مرتب‌سازی
+        $data->orderBy(request('sort_by', 'id'), request('sort_type', 'desc'));
+
+        // بازگشت پاسخ با pagination
+        return helper_response_fetch(UserIndexResource::collection($data->paginate(request('per_page', 10)))->resource);
     }
 
     public function all(): \Illuminate\Http\JsonResponse
