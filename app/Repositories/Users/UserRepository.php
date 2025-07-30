@@ -55,6 +55,14 @@ class UserRepository implements UserInterface
         return helper_response_fetch(UserShortResource::collection($data->get()));
     }
 
+    public function doctors()
+    {
+        $data = User::query();
+        $data->orderByDesc('id');
+        $data->where('group_id', 2);
+        return helper_response_fetch(UserShortResource::collection($data->get()));
+    }
+
 
     public function store($request): \Illuminate\Http\JsonResponse
     {

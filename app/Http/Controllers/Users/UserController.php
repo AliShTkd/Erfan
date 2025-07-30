@@ -30,6 +30,12 @@ class UserController extends Controller
     {
         return $this->repository->all();
     }
+
+    public function doctors()
+    {
+        return $this->repository->doctors();
+    }
+
     /**
      * Store a newly created resource in storage.
      */

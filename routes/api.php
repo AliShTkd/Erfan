@@ -34,6 +34,7 @@ Route::group(['middleware' => "auth:api"], function () {
 
 
         Route::get('all',[\App\Http\Controllers\Users\UserController::class,'all'])->name('all');
+        Route::get('doctors',[\App\Http\Controllers\Users\UserController::class,'doctors'])->name('doctors');
         Route::get('searchable',[\App\Http\Controllers\Users\UserController::class,'searchable'])->name('searchable');
     });
     Route::apiResource('users',\App\Http\Controllers\Users\UserController::class);

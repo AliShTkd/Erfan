@@ -8,6 +8,8 @@ interface UserInterface
 
     public function all();
 
+    public function doctors();
+
     public function store($request);
 
     public function show($item);
