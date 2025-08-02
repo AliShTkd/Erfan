@@ -68,7 +68,8 @@ class UserRepository implements UserInterface
     {
         $data = User::create([
             'group_id' => $request->group_id,
-            'name' => $request->name,
+            'fname' => $request->fname,
+            'lname' => $request->lname,
             'email' => $request->email,
             'phone' => $request->phone,
             'username' => $request->username,
@@ -90,7 +91,8 @@ class UserRepository implements UserInterface
     {
         $item->update([
             'group_id' => $request->group_id,
-            'name' => $request->name,
+            'fname' => $request->fname,
+            'lname' => $request->lname,
             'email' => $request->email,
             'phone' => $request->phone,
             'username' => $request->username,

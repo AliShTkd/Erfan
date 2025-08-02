@@ -23,7 +23,8 @@ class UserRelResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'fname' => $this->fname,
+            'lname' => $this->lname,
             'phone' => $this->phone,
             'email' => $this->email,
         ];

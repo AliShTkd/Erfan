@@ -53,4 +53,7 @@ Route::group(['middleware' => "auth:api"], function () {
         Route::get('delete/{id}',[\App\Http\Controllers\Carts\CartController::class,'delete_cart'])->name('delete_cart');
     });
     Route::apiResource('carts',\App\Http\Controllers\Carts\CartController::class);
+
+
+    Route::apiResource('doctors',\App\Http\Controllers\Doctors\DoctorController::class);
 });

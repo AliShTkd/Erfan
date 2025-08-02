@@ -11,7 +11,8 @@ class AuthRepository implements AuthInterface
     public function register($request)
     {
         $user = User::create([
-            'name' => $request->name,
+            'fname' => $request->fname,
+            'lname' => $request->lname,
             'email' => $request->email,
             'password' => \Hash::make($request->password),
             'group_id' => $request->group_id,
