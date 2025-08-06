@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Doctors;
 
-use App\Models\Doctors\Comment;
+use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Doctor extends Model
+class Comment extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table='doctors';
+    protected $table='comments';
     protected $guarded=[];
     protected static function booted(): void
     {
@@ -35,13 +35,13 @@ class Doctor extends Model
         return $this->belongsTo(User::class,'updated_by');
     }
 
+    public function doctor(): BelongsTo
+    {
+        return $this->belongsTo(Doctor::class,'doctor_id');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class,'user_id');
-    }
-
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class,'doctor_id');
     }
 }

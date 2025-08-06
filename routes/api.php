@@ -54,6 +54,8 @@ Route::group(['middleware' => "auth:api"], function () {
     });
     Route::apiResource('carts',\App\Http\Controllers\Carts\CartController::class);
 
-
+    Route::prefix('doctors')->as('doctors.')->group(function (){
+        Route::apiResource('comments',\App\Http\Controllers\Doctors\Comments\CommentController::class);
+    });
     Route::apiResource('doctors',\App\Http\Controllers\Doctors\DoctorController::class);
 });

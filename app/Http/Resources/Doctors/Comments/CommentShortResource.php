@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources\Doctors;
+namespace App\Http\Resources\Doctors\Comments;
 
+use App\Http\Resources\Doctors\DoctorShortResource;
 use App\Http\Resources\Users\UserRelResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,7 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $profile
  * @property mixed $config
  */
-class DoctorShortResource extends JsonResource
+class CommentShortResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,9 +25,8 @@ class DoctorShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => new UserRelResource($this->user),
-            'specialty' => $this->specialty,
-            'license_number' => $this->license_number,
+            'doctor' => new DoctorShortResource($this->doctor),
+            'created_by' => new UserRelResource($this->created_user),
         ];
     }
 }
