@@ -2,7 +2,7 @@
 namespace App\Repositories\Products;
 
 use App\Http\Resources\Products\ProductIndexResource;
-use App\Http\Resources\Users\ProductShortResource;
+use App\Http\Resources\Products\ProductShortResource;
 use App\Interfaces\Products\ProductInterface;
 use App\Models\Product;
 

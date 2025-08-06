@@ -58,4 +58,10 @@ Route::group(['middleware' => "auth:api"], function () {
         Route::apiResource('comments',\App\Http\Controllers\Doctors\Comments\CommentController::class);
     });
     Route::apiResource('doctors',\App\Http\Controllers\Doctors\DoctorController::class);
+
+    Route::prefix('contacts')->as('contacts.')->group(function (){
+        Route::apiResource('us',\App\Http\Controllers\Contact_us\ContactUsController::class);
+    });
 });
+
+
