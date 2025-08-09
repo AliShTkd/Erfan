@@ -19,7 +19,7 @@ class ProductCreateRequest extends FormRequest
         return [
             'user_id' => 'nullable|exists:users,id',
             'name' => 'required|unique:products,name',
-            'entity' => 'required|numeric',
+            'entity' => 'nullable|numeric',
             'price' => 'required|numeric',
             'image' => 'nullable',
         ];
