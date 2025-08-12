@@ -15,7 +15,7 @@ class AuthRepository implements AuthInterface
             'lname' => $request->lname,
             'email' => $request->email,
             'password' => \Hash::make($request->password),
-            'group_id' => $request->group_id,
+            'group_id' => 3,
             'phone' => $request->phone,
         ]);
         //$user->update(['code' => helper_core_code_generator($user->id)]);
@@ -40,6 +40,13 @@ class AuthRepository implements AuthInterface
             'user' => (new UserInfoAuthResource($user)),
             'token_type' => 'Bearer'
         ]);
+    }
+
+    public function user_logout()
+    {
+        $user = auth('api')->user();
+        auth('api')->logout();
+        return helper_response_main('user logout success', new UserInfoAuthResource($user)); 
     }
 
 

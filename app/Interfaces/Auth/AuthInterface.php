@@ -8,8 +8,8 @@ interface AuthInterface
 
     public function users_login($request);
 
-
-
+    public function user_logout();
+    
 
 
 

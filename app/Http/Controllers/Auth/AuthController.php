@@ -29,7 +29,10 @@ class AuthController extends Controller
     }
 
 
-
+    public function logout()
+    {
+        return $this->repository->user_logout();
+    }
 
 
 }
