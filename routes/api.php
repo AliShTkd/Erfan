@@ -62,6 +62,24 @@ Route::group(['middleware' => "auth:api"], function () {
     Route::prefix('contacts')->as('contacts.')->group(function (){
         Route::apiResource('us',\App\Http\Controllers\Contact_us\ContactUsController::class);
     });
+
+
+
+    Route::prefix('appointments')->as('appointments.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Appointment\AppointmentController::class, 'index'])->name('index');
+        Route::get('/my', [\App\Http\Controllers\Appointment\AppointmentController::class, 'myAppointments'])->name('my');
+        Route::post('/', [\App\Http\Controllers\Appointment\AppointmentController::class, 'store'])->name('store');
+        Route::get('/{appointment}', [\App\Http\Controllers\Appointment\AppointmentController::class, 'show'])->name('show');
+        Route::post('/{appointment}/cancel', [\App\Http\Controllers\Appointment\AppointmentController::class, 'cancel'])->name('cancel');
+    });
+
+//    Authentication testing route
+    Route::get('/test-auth', function (\Illuminate\Http\Request $request) {
+        return response()->json([
+            'message' => 'Authentication successful!',
+            'user' => $request->user()
+        ]);
+    });
 });
 
 

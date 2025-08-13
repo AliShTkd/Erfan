@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Products;
+namespace App\Http\Resources\Appointment;
 
 use App\Http\Resources\User_Groups\UserGroupShortResource;
 use App\Http\Resources\Users\UserRelResource;
@@ -14,7 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $profile
  * @property mixed $config
  */
-class ProductIndexResource extends JsonResource
+class AppointmentIndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -27,12 +27,12 @@ class ProductIndexResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'user' => new UserRelResource($this->user),
-            'name' => $this->name,
-            'entity' => $this->entity,
-            'price' => $this->price,
-            'image' => $this->image, // مسیر خام
-            'image_url' => $this->image_url, // <-- این خط بسیار مهم است!
-            'description' => $this->description,
+            'doctor_id' => $this->doctor_id,
+            'doctor' => new UserRelResource($this->doctor),
+            'appointment_time' => $this->appointment_time,
+            'duration_minutes' => $this->duration_minutes,
+            'status' => $this->status,
+            'notes' => $this->notes,
             'created_by' => new UserRelResource($this->created_user),
             'updated_by' => new UserRelResource($this->updated_user),
             'created_at' => $this->created_at,

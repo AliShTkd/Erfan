@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -37,6 +39,28 @@ class Product extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    // START: بخش اضافه شده برای مدیریت آدرس عکس
+    /**
+     * یک اتربیوت مجازی برای گرفتن URL کامل عکس ایجاد می‌کند.
+     * با این کار می‌توانید در API Resource یا Blade از $product->image_url استفاده کنید.
+     */
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                // اگر فیلد image در دیتابیس مقدار داشت، URL کامل آن را بساز
+                if ($this->image) {
+                    return Storage::disk('public')->url($this->image);
+                }
+
+                // در غیر این صورت، یک آدرس عکس پیش‌فرض برگردان
+                // شما باید این عکس پیش‌فرض را در پوشه public/images قرار دهید
+                return asset('images/default-product.png');
+            }
+        );
+    }
+    // END: بخش اضافه شده برای مدیریت آدرس عکس
 
     public static function searchable()
     {
