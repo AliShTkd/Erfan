@@ -91,6 +91,17 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Cart::class, 'user_id');
     }
 
+    public function cartItems(): HasMany
+    {
+        // نام مدل Cart شما ممکن است متفاوت باشد، در این صورت آن را اصلاح کنید
+        return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public static function searchable()
     {
         $group =User_Group::select(['id as value','name as label'])->get();

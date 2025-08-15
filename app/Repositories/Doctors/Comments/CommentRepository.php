@@ -21,8 +21,9 @@ class CommentRepository implements CommentInterface
     public function all()
     {
         $data = Comment::query();
+        $data->where('doctor_id',request('doctor_id'));
         $data->orderByDesc('id');
-        return helper_response_fetch(CommentShortResource::collection($data->get()));
+        return helper_response_fetch(CommentIndexResource::collection($data->get()));
     }
 
     public function store($request): \Illuminate\Http\JsonResponse

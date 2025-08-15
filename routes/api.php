@@ -54,6 +54,15 @@ Route::group(['middleware' => "auth:api"], function () {
     });
     Route::apiResource('carts',\App\Http\Controllers\Carts\CartController::class);
 
+
+    Route::prefix('orders')->as('orders.')->group(function (){
+
+    });
+    Route::apiResource('orders',\App\Http\Controllers\Api\OrderController::class)->only(['index', 'show', 'store']);
+
+
+
+
     Route::prefix('doctors')->as('doctors.')->group(function (){
         Route::apiResource('comments',\App\Http\Controllers\Doctors\Comments\CommentController::class);
     });
@@ -71,6 +80,7 @@ Route::group(['middleware' => "auth:api"], function () {
         Route::post('/', [\App\Http\Controllers\Appointment\AppointmentController::class, 'store'])->name('store');
         Route::get('/{appointment}', [\App\Http\Controllers\Appointment\AppointmentController::class, 'show'])->name('show');
         Route::post('/{appointment}/cancel', [\App\Http\Controllers\Appointment\AppointmentController::class, 'cancel'])->name('cancel');
+        Route::get('/check-doctor/{doctor}', [\App\Http\Controllers\Appointment\AppointmentController::class, 'checkDoctorAppointment'])->name('checkDoctor');
     });
 
 //    Authentication testing route

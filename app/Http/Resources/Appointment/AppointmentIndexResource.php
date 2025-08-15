@@ -6,6 +6,7 @@ use App\Http\Resources\User_Groups\UserGroupShortResource;
 use App\Http\Resources\Users\UserRelResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Morilog\Jalali\Jalalian;// تاریخ به هجری شمسی
 
 /**
  * @property mixed $id
@@ -31,6 +32,7 @@ class AppointmentIndexResource extends JsonResource
             'doctor' => new UserRelResource($this->doctor),
             'appointment_time' => $this->appointment_time,
             'duration_minutes' => $this->duration_minutes,
+            'appointment_time_fa' => Jalalian::fromCarbon($this->appointment_time)->format('Y/m/d ساعت H:i'),
             'status' => $this->status,
             'notes' => $this->notes,
             'created_by' => new UserRelResource($this->created_user),

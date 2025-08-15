@@ -26,6 +26,11 @@ class CommentController extends Controller
         return $this->repository->index();
     }
 
+    public function all()
+    {
+        return $this->repository->all();
+    }
+
     /**
      * Store a newly created resource in storage.
      */

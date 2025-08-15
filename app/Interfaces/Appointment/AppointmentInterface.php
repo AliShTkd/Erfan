@@ -1,6 +1,8 @@
 <?php
 namespace App\Interfaces\Appointment;
 
+use App\Models\Doctor;
+
 interface AppointmentInterface
 {
     public function index();
@@ -12,6 +14,8 @@ interface AppointmentInterface
     public function show($item);
 
     public function cancel($item);
+
+    public function checkDoctorAppointment(Doctor $doctor);
 
 }
 

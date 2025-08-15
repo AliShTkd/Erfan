@@ -115,4 +115,29 @@ class AppointmentRepository implements AppointmentInterface
         $item->update(['status' => 'cancelled']);
         return helper_response_updated(new AppointmentIndexResource($item));
     }
+
+
+    public function checkDoctorAppointment(Doctor $doctor)
+    {
+        $user = Auth::user();
+
+        $appointment = \App\Models\Appointment::where('user_id', $user->id)
+            ->where('doctor_id', $doctor->id)
+            ->whereIn('status', ['confirmed', 'pending'])
+            ->orderBy('appointment_time', 'asc')
+            ->first();
+
+        if ($appointment) {
+            // If an appointment is found, use the resource to return it
+            return helper_response_fetch(new AppointmentIndexResource($appointment));
+        }
+
+        // If no appointment is found, return a simple, valid JSON response with a null result.
+        // This prevents the 500 server error.
+        return response()->json([
+            'status' => 'success',
+            'message' => 'No active appointment found.',
+            'result' => null
+        ], 200);
+    }
 }

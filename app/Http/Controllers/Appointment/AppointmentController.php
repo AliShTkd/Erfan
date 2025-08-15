@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Appointment\AppointmentStoreRequest;
 use App\Interfaces\Appointment\AppointmentInterface;
 use App\Models\Appointment;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -42,5 +43,10 @@ class AppointmentController extends Controller
     public function cancel(Appointment $appointment)
     {
         return $this->repository->cancel($appointment);
+    }
+
+    public function checkDoctorAppointment(Doctor $doctor)
+    {
+        return $this->repository->checkDoctorAppointment($doctor);
     }
 }
