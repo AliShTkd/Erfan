@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('total_amount'); // قیمت کل سفارش
-            $table->string('status')->default('pending'); // وضعیت: pending, paid, shipped, etc.
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();

@@ -90,6 +90,11 @@ Route::group(['middleware' => "auth:api"], function () {
             'user' => $request->user()
         ]);
     });
+
+
+
+    Route::apiResource('address',\App\Http\Controllers\Address\AddressController::class);
+
 });
 
 

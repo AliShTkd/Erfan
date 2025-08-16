@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Addresses\AddressInterface;
 use App\Interfaces\Appointment\AppointmentInterface;
 use App\Interfaces\Auth\AuthInterface;
 use App\Interfaces\Carts\CartInterface;
@@ -11,6 +12,7 @@ use App\Interfaces\Doctors\DoctorInterface;
 use App\Interfaces\Products\ProductInterface;
 use App\Interfaces\User_Groups\UserGroupInterface;
 use App\Interfaces\Users\UserInterface;
+use App\Repositories\Addresses\AddressRepository;
 use App\Repositories\Appointment\AppointmentRepository;
 use App\Repositories\Auth\AuthRepository;
 use App\Repositories\Carts\CartRepository;
@@ -39,6 +41,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(CommentInterface::class,CommentRepository::class);
         $this->app->bind(ContactUsInterface::class,ContactUsRepository::class);
         $this->app->bind(AppointmentInterface::class,AppointmentRepository::class);
+        $this->app->bind(AddressInterface::class,AddressRepository::class);
 
     }
 
